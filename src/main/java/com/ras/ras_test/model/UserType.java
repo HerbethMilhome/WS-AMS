@@ -14,12 +14,14 @@ import java.io.Serializable;
 public class UserType implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_type_id")
     private Long id;
 
+    @NonNull
     private String name;
 
+    @NonNull
     private String description;
 
 

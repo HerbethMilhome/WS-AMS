@@ -16,27 +16,29 @@ import java.time.LocalDate;
 public class UserPaymentInfo implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_payment_info_id")
     private Long id;
 
-    @Column(name = "card_number")
+    @Column(name = "card_number", nullable = false)
     private String cardNumber;
 
-    @Column(name = "card_expiration_month")
+    @Column(name = "card_expiration_month", nullable = false)
     private Long cardExpirationMonth;
 
-    @Column(name = "card_expiration_year")
+    @Column(name = "card_expiration_year", nullable = false)
     private Long cardExpirationYear;
 
-    @Column(name = "card_security_code")
+    @Column(name = "card_security_code", nullable = false)
     private Long cardSecurityCode;
 
+    @NonNull
     private BigDecimal price;
 
+    @NonNull
     private Long instalments;
 
-    @Column(name = "dt_payment")
+    @Column(name = "dt_payment", nullable = false)
     private LocalDate dtPayment;
 
     @ManyToOne(fetch = FetchType.LAZY)

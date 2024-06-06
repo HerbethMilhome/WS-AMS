@@ -1,9 +1,9 @@
 package com.ras.ras_test.service;
 
+import com.ras.ras_test.dto.SubscriptionTypeDTO;
 import com.ras.ras_test.model.SubscriptionType;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface SubscriptionTypeService {
 
@@ -11,9 +11,9 @@ public interface SubscriptionTypeService {
 
     SubscriptionType findById(Long id);
 
-    SubscriptionType create(SubscriptionType subscriptionType);
+    SubscriptionType create(SubscriptionTypeDTO dto);
 
-    SubscriptionType update(Long id, SubscriptionType subscriptionType);
+    SubscriptionType update(Long id, SubscriptionTypeDTO dto);
 
     void delete(Long id);
 

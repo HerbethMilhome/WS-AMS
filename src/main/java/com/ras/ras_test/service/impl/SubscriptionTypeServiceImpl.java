@@ -1,5 +1,6 @@
 package com.ras.ras_test.service.impl;
 
+import com.ras.ras_test.dto.SubscriptionTypeDTO;
 import com.ras.ras_test.exception.NotFoundException;
 import com.ras.ras_test.model.SubscriptionType;
 import com.ras.ras_test.repository.SubscriptionTypeRepository;
@@ -7,7 +8,6 @@ import com.ras.ras_test.service.SubscriptionTypeService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -34,12 +34,28 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
     }
 
     @Override
-    public SubscriptionType create(SubscriptionType subscriptionType) {
+    public SubscriptionType create(SubscriptionTypeDTO dto) {
+        SubscriptionType subscriptionType = SubscriptionType.builder()
+                .id(dto.getId())
+                .name(dto.getName())
+                .accessMonths(dto.getAccessMonths())
+                .price(dto.getPrice())
+                .productKey(dto.getProductKey())
+                .build();
+
         return repository.save(subscriptionType);
     }
 
     @Override
-    public SubscriptionType update(Long id, SubscriptionType subscriptionType) {
+    public SubscriptionType update(Long id, SubscriptionTypeDTO dto) {
+        SubscriptionType subscriptionType = SubscriptionType.builder()
+                .id(id)
+                .name(dto.getName())
+                .accessMonths(dto.getAccessMonths())
+                .price(dto.getPrice())
+                .productKey(dto.getProductKey())
+                .build();
+
         return repository.save(subscriptionType);
     }
 

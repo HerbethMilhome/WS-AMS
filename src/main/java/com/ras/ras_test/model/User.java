@@ -16,22 +16,26 @@ import java.time.LocalDate;
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "users_id")
     private Long id;
 
+    @NonNull
     private String name;
 
+    @NonNull
     private String email;
 
+    @NonNull
     private String phone;
 
+    @NonNull
     private String cpf;
 
-    @Column(name = "dt_subscription")
+    @Column(name = "dt_subscription", nullable = false)
     private LocalDate dtSubscription;
 
-    @Column(name = "dt_expiration")
+    @Column(name = "dt_expiration", nullable = false)
     private LocalDate dtExpiration;
 
     @ManyToOne(fetch = FetchType.LAZY)
