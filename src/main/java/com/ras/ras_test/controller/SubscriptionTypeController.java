@@ -32,5 +32,16 @@ public class SubscriptionTypeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(dto));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<SubscriptionType> update(@PathVariable Long id, @RequestBody SubscriptionTypeDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.update(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+    }
+
 
 }
