@@ -3,6 +3,7 @@ package com.ras.ras_test.service.impl;
 import com.ras.ras_test.dto.SubscriptionTypeDTO;
 import com.ras.ras_test.exception.BadRequestException;
 import com.ras.ras_test.exception.NotFoundException;
+import com.ras.ras_test.mapper.SubscriptionTypeMapper;
 import com.ras.ras_test.model.SubscriptionType;
 import com.ras.ras_test.repository.SubscriptionTypeRepository;
 import com.ras.ras_test.service.SubscriptionTypeService;
@@ -37,29 +38,14 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
         if (Objects.nonNull(dto.getId())) {
             throw new BadRequestException("ID to be null");
         }
-        SubscriptionType subscriptionType = SubscriptionType.builder()
-                .id(dto.getId())
-                .name(dto.getName())
-                .accessMonths(dto.getAccessMonths())
-                .price(dto.getPrice())
-                .productKey(dto.getProductKey())
-                .build();
 
-        return repository.save(subscriptionType);
+        return repository.save(SubscriptionTypeMapper.fromDtoToEntity(dto));
     }
 
     @Override
     public SubscriptionType update(Long id, SubscriptionTypeDTO dto) {
         this.getSubscriptionType(id);
-        SubscriptionType subscriptionType = SubscriptionType.builder()
-                .id(id)
-                .name(dto.getName())
-                .accessMonths(dto.getAccessMonths())
-                .price(dto.getPrice())
-                .productKey(dto.getProductKey())
-                .build();
-
-        return repository.save(subscriptionType);
+        return repository.save(SubscriptionTypeMapper.fromDtoToEntity(dto));
     }
 
     @Override
