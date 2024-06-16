@@ -3,6 +3,7 @@ package com.ras.ras_test.exception.Handler;
 import com.ras.ras_test.dto.error.ErrorResponseDto;
 import com.ras.ras_test.exception.BadRequestException;
 import com.ras.ras_test.exception.NotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -47,6 +48,15 @@ public class ResouceHandler {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponseDto.builder()
                 .message(Arrays.toString(messages.entrySet().toArray()))
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .build());
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponseDto> notFoundException(DataIntegrityViolationException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponseDto.builder()
+                .message(e.getMessage())
                 .httpStatus(HttpStatus.BAD_REQUEST)
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .build());

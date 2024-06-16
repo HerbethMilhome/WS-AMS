@@ -1,5 +1,6 @@
 package com.ras.ras_test.service.impl;
 
+import com.ras.ras_test.controller.SubscriptionTypeController;
 import com.ras.ras_test.dto.SubscriptionTypeDTO;
 import com.ras.ras_test.exception.BadRequestException;
 import com.ras.ras_test.exception.NotFoundException;
@@ -7,6 +8,7 @@ import com.ras.ras_test.mapper.SubscriptionTypeMapper;
 import com.ras.ras_test.model.SubscriptionType;
 import com.ras.ras_test.repository.SubscriptionTypeRepository;
 import com.ras.ras_test.service.SubscriptionTypeService;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,8 +31,7 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
 
     @Override
     public SubscriptionType findById(Long id) {
-        SubscriptionType optionalSubscriptionType = this.getSubscriptionType(id);
-        return optionalSubscriptionType;
+        return this.getSubscriptionType(id);
     }
 
     @Override
